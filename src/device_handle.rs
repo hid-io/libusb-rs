@@ -409,7 +409,7 @@ impl<'a> DeviceHandle<'a> {
     pub fn read_languages(&self, timeout: Duration) -> ::Result<Vec<Language>> {
         let mut buf = Vec::<u8>::with_capacity(256);
 
-        let mut buf_slice = unsafe {
+        let buf_slice = unsafe {
             slice::from_raw_parts_mut((&mut buf[..]).as_mut_ptr(), buf.capacity())
         };
 
@@ -436,7 +436,7 @@ impl<'a> DeviceHandle<'a> {
     pub fn read_string_descriptor(&self, language: Language, index: u8, timeout: Duration) -> ::Result<String> {
         let mut buf = Vec::<u8>::with_capacity(256);
 
-        let mut buf_slice = unsafe {
+        let buf_slice = unsafe {
             slice::from_raw_parts_mut((&mut buf[..]).as_mut_ptr(), buf.capacity())
         };
 
