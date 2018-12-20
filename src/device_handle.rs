@@ -253,7 +253,7 @@ impl<'a> DeviceHandle<'a> {
                 Ok(transferred as usize)
             },
             err => {
-                if err == LIBUSB_ERROR_INTERRUPTED && transferred > 0 {
+                if (err == LIBUSB_ERROR_INTERRUPTED || err == LIBUSB_ERROR_TIMEOUT) && transferred > 0 {
                     Ok(transferred as usize)
                 }
                 else {
@@ -299,7 +299,7 @@ impl<'a> DeviceHandle<'a> {
                 Ok(transferred as usize)
             },
             err => {
-                if err == LIBUSB_ERROR_INTERRUPTED && transferred > 0 {
+                if (err == LIBUSB_ERROR_INTERRUPTED || err == LIBUSB_ERROR_TIMEOUT) && transferred > 0 {
                     Ok(transferred as usize)
                 }
                 else {
